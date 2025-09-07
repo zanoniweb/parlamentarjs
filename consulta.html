@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Interativo Estático - Candidta</title>
+    
+    <style>
+        /* Estilos do primeiro código para padronização */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        /* Novo Estilo do cabeçalho, idêntico ao primeiro código */
+        header {
+            background-color: #0077cc;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            /* Estilo específico para a logo, se houver imagem */
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 1rem;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        nav a:hover {
+            color: #ffdd57;
+        }
+
+        /* Novo Estilo do rodapé, idêntico ao primeiro código */
+        footer {
+            background-color: #0077cc;
+            color: white;
+            text-align: center;
+            padding: 0.5rem;
+            margin-top: 1rem;
+            font-size: 0.8rem;
+        }
+
+        /* Responsividade para o cabeçalho e rodapé */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        /* Estilos específicos para a página do Chat */
+        body { 
+            font-family: Arial, sans-serif; 
+            background-color: #f0f8ff; 
+        }
+        .chat-container { 
+            max-width: 600px;
+            width: 90%;
+            margin: 20px auto; 
+            background: #fff; 
+            border: 1px solid #ddd; 
+            border-radius: 10px; 
+            padding: 15px; 
+        }
+        .messages { 
+            max-height: 400px;
+            overflow-y: auto; 
+            margin-bottom: 10px; 
+            padding: 5px;
+        }
+        .message { 
+            margin: 5px 0; 
+            padding: 5px; 
+            border-radius: 5px; 
+        }
+        .user-message { 
+            background-color: #d3f8d3; 
+            text-align: left; 
+        }
+        .bot-message { 
+            background-color: #f8d3d3; 
+            text-align: right; 
+        }
+        input[type="text"] { 
+            width: 85%;
+            padding: 10px; 
+            margin-top: 10px; 
+            border-radius: 5px; 
+        }
+        .chat-button {
+            width: auto;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .manual {
+            position: fixed;
+            top: 0;
+            right: -350px;
+            width: 300px;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            transition: right 0.3s ease-in-out;
+            overflow-y: auto;
+        }
+        .manual h2 {
+            margin-top: 0;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+        .manual ul {
+            padding-left: 20px;
+        }
+        .manual ul li {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        .manual.ativo {
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <a class="logo">NOME CANDIDATO (A)</a>
+    <nav>
+
+        <a href="agenda.html">Agenda Política |</a>
+        <a href="contatos.html">Contatos |</a>
+        <a href="eventos.html">Fotos |</a>
+        <a href="mensagem.html">Mensagens |</a>
+        <a href="index.html">Sobre Mim |</a>
+        <a href="videos.html">Vídeos |</a>
+
+    </nav>
+</header>
+
+<main>
+    <center>
+        <h1>**Chat Interativo Estático - Candidta**</h1>
+    </center>
+
+    <div class="chat-container">
+        <div class="messages" id="messages"></div>
+        <input type="text" id="userInput" placeholder="Digite sua pergunta...">
+        <button class="chat-button" onclick="sendMessage()">Enviar</button>
+        <button class="chat-button" onclick="clearChat()">Limpar</button>
+        <button class="chat-button" id="btnOrientacoes">Orientações Chat</button>
+    </div>
+    <div id="manual" class="manual">
+        <button class="chat-button" id="btnFechar">✖</button>
+        <h2>Micro Manual de Orientações</h2>
+        <ul>
+            <li>✔ Passo 1: Esse chat destina-se a dar informações da candidata a veredora (NOME COMPLETO) do partido.</li>
+            <li>✔ Passo 2: Para iniciar uma conversa, use palavras-chave como "oi", "saúde", "educação", "segurança", "meio ambiente" ou "projeto de lei".</li>
+            <li>✔ Passo 2: Para iniciar uma conversa, use palavras-chave relacionadas a cumprimentos como "oi", "olá", "bom dia", "boa tarde", "boa noite", ou "como você está". Para saber mais sobre a candidata, use "fale sobre você" ou "sua história". Para conhecer as propostas, use palavras-chave como "saúde", "educação", "segurança", "meio ambiente", "projeto de lei" ou "propostas de saúde". Se quiser participar, digite "quero participar" ou "fale com o político".</li>
+        </ul>
+    </div>
+</main>
+
+<footer>
+
+    <p>Site desenvolvido por J. Z.</p>
+
+</footer>
+
+<script>
+    function addMessage(text, isBot = false) {
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('message', isBot ? 'bot-message' : 'user-message');
+        messageElement.textContent = text;
+        document.getElementById('messages').appendChild(messageElement);
+        document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight;
+    }
+
+    function sendMessage() {
+        const userInput = document.getElementById('userInput');
+        const userMessage = userInput.value.trim().toLowerCase();
+        if (userMessage === "") return;
+
+        addMessage(userMessage, false);
+        userInput.value = "";
+
+        setTimeout(() => {
+            const botResponse = getBotResponse(userMessage);
+            addMessage(botResponse, true);
+        }, 1000);
+    }
+
+    function getBotResponse(input) {
+        const responses = [
+            {
+                "keywords": ["oi"],
+                "response": "Olá! Que bom ter você aqui. Como posso te ajudar?"
+            },
+            {
+                "keywords": ["bom dia"],
+                "response": "Olá! Obrigado pelo contato. Se tiver alguma dúvida ou sugestão, estou à disposição para ouvir."
+            },
+            {
+                "keywords": ["boa noite"],
+                "response": "Olá! Obrigado pelo contato. Se tiver alguma dúvida ou sugestão, estou à disposição para ouvir."
+            },
+            {
+                "keywords": ["como você está"],
+                "response": "Estou bem, obrigado por perguntar. Fico feliz em poder ajudar. Qual o assunto que te interessa?"
+            },
+            {
+                "keywords": ["obrigado"],
+                "response": "Eu que agradeço o seu contato e a sua participação. Conte comigo!"
+            },
+            {
+                "keywords": ["fale sobre você"],
+                "response": "Minha trajetória sempre foi focada no serviço à comunidade. Desde [citar um marco ou evento, como 'meu trabalho como ativista comunitário' ou 'minha experiência como professor'], busco defender [mencionar uma causa]. Minha missão é construir uma cidade mais justa e próspera para todos."
+            },
+            {
+                "keywords": ["saúde"],
+                "response": "A saúde é prioridade. Minhas propostas incluem a expansão do horário de atendimento nos postos de saúde e a otimização da marcação de consultas para reduzir as filas. Se quiser saber mais sobre isso, me pergunte sobre 'propostas de saúde'."
+            },
+            {
+                "keywords": ["educação"],
+                "response": "Investir em educação é construir o futuro. Trabalho para garantir vagas em creches para todas as famílias, valorizar nossos professores com salários justos e modernizar as escolas da nossa cidade. Quer saber mais? Digite 'propostas de educação'."
+            },
+            {
+                "keywords": ["segurança"],
+                "response": "A segurança é um direito de todos. Defendo o fortalecimento da Guarda Municipal e a criação de programas de prevenção à violência em parceria com a comunidade. Se tiver interesse em mais detalhes, pesquise por 'propostas de segurança'."
+            },
+            {
+                "keywords": ["meio ambiente"],
+                "response": "A sustentabilidade é essencial. Apoio a ampliação da coleta seletiva e a criação de mais áreas verdes e parques na nossa cidade. Quer mais informações sobre o tema? Digite 'propostas de meio ambiente'."
+            },
+            {
+                "keywords": ["projeto de lei"],
+                "response": "Como vereador, já propus e/ou aprovei diversos projetos de lei, como o PL [número do projeto] que [descrever o PL de forma simples]. Se quiser conhecer mais, posso detalhar meus projetos mais importantes. Qual assunto te interessa mais?"
+            },
+            {
+                "keywords": ["propostas de saúde"],
+                "response": "Atualmente, meu foco é no Projeto de Lei que busca a informatização das unidades de saúde, para agilizar agendamentos e o acesso ao histórico dos pacientes. Além disso, defendo a criação de clínicas móveis para atender bairros mais distantes."
+            },
+            {
+                "keywords": ["quero participar"],
+                "response": "Sua participação é fundamental! Você pode acompanhar meu trabalho pelas redes sociais, participar das audiências públicas na Câmara Municipal e me enviar suas sugestões diretamente. Juntos, podemos fazer a diferença."
+            },
+            {
+                "keywords": ["fale com o político"],
+                "response": "Sua voz é muito importante para mim. Por isso, estou sempre aberto para ouvir a população. Se tiver uma questão específica do seu bairro ou uma sugestão para a nossa cidade, pode me enviar uma mensagem."
+            }
+        ];
+
+        for (const item of responses) {
+            for (const keyword of item.keywords) {
+                if (input.includes(keyword)) {
+                    return item.response;
+                }
+            }
+        }
+
+        return "Desculpe, eu não entendi. Por favor, tente usar uma das palavras-chave sugeridas no manual.";
+    }
+
+    function clearChat() {
+        document.getElementById('messages').innerHTML = "";
+    }
+
+    document.getElementById("btnOrientacoes").addEventListener("click", function () {
+        document.getElementById("manual").classList.add("ativo");
+    });
+
+    document.getElementById("btnFechar").addEventListener("click", function () {
+        document.getElementById("manual").classList.remove("ativo");
+    });
+</script>
+
+</body>
+</html>

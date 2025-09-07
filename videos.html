@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VÍDEOS: CANDIDATO (A).</title>
+
+    <style>
+        /* Estilos do primeiro código para padronização */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        /* Novo Estilo do cabeçalho, idêntico ao primeiro código */
+        header {
+            background-color: #0077cc;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            /* Estilo da sua imagem de logo, se houver */
+            max-width: 250px; 
+            height: auto;
+            display: block;
+        }
+        
+        .logo img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 1rem;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        nav a:hover {
+            color: #ffdd57;
+        }
+
+        /* Novo Estilo do rodapé, idêntico ao primeiro código */
+        footer {
+            background-color: #0077cc;
+            color: white;
+            text-align: center;
+            padding: 0.5rem;
+            margin-top: 1rem;
+            font-size: 0.8rem;
+        }
+
+        /* Estilos específicos para a página de Vídeos */
+        body {
+            color: black;
+            background-color: white;
+            font-family: 'Geneva', sans-serif;
+            font-size: 25px;
+        }
+
+        h1, h2, h3, h4, h5, h6, h7, h8, h9 {
+            font-family: 'Geneva', sans-serif;
+            font-size: 45px;
+            text-align: center;
+        }
+
+        p {
+            font-family: 'Geneva', sans-serif;
+            font-size: 25px;
+            text-align: center;
+        }
+
+        /* Começo da formatação padrão vídeo */
+        .video-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        iframe {
+            max-width: 100%;
+            display: block;
+            margin: auto;
+        }
+
+        button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            background-color: blueviolet;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: center;
+            }
+            nav {
+                margin-top: 1rem;
+            }
+            .video-container {
+                padding: 1rem;
+            }
+            iframe {
+                width: 100%;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+   
+    <a class="logo">NOME CANDIDATO (A)</a>
+
+    <nav>
+        
+        <a href="agenda.html">Agenda Política |</a>
+        <a href="contatos.html">Contatos |</a>
+        <a href="consulta.html">Chat |</a> 
+        <a href="eventos.html">Fotos |</a>
+        <a href="mensagem.html">Mensagens |</a>
+        <a href="index.html">Sobre Mim |</a>
+        
+    </nav>
+</header>
+
+<main>
+    <h1>ÁREA DE VÍDEOS</h1>
+
+    <div class="video-container">
+        <div>
+            <iframe id="video1" width="560" height="315" src="https://www.youtube.com/embed/lne84MpCIvQ?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+            <center>
+            <p>Portal Zanoni Capacitação Humana, Ciência & Tecnologia. CURSOS E EBOOKS 100% GRATUITOS.</p>
+            <p>Data da Publicação: 14 de julho de 2024.</p>
+            
+            <button onclick="pauseVideo('video1')">⏸️ Pause</button>
+            <button onclick="rewindVideo('video1')">⏪ Voltar 10s</button>
+            <button onclick="forwardVideo('video1')">⏩ Avançar 10s</button>
+            </center>
+        </div>
+
+        <div>
+            <iframe id="video2" width="560" height="315" src="https://www.youtube.com/embed/lne84MpCIvQ?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+            <center>
+            <p>Portal Zanoni Capacitação Humana, Ciência & Tecnologia. CURSOS E EBOOKS 100% GRATUITOS.</p>
+            <p>Data da Publicação: 14 de julho de 2024.</p>
+        
+            <button onclick="pauseVideo('video2')">⏸️ Pause</button>
+            <button onclick="rewindVideo('video2')">⏪ Voltar 10s</button>
+            <button onclick="forwardVideo('video2')">⏩ Avançar 10s</button>
+            </center>
+        </div>
+
+        <div>
+            <iframe id="video3" width="560" height="315" src="https://www.youtube.com/embed/ypt0YZKqwo8" frameborder="0" allowfullscreen></iframe>
+            <center>
+            <p>Mario Sergio Cortella - Como ser o melhor profissional do mundo.</p>
+            <p>Data da Publicação: 20 de dezembro de 2021.</p>
+            
+            <p>OBS: Os botões não funcionam para este vídeo devido às restrições de API.</p>
+            </center>
+        </div>
+    </div>
+</main>
+
+<footer>
+  
+    <p>Site desenvolvido por J. Z.</p>
+
+</footer>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script>
+    let players = {};
+
+    function onYouTubeIframeAPIReady() {
+        players['video1'] = new YT.Player('video1');
+        players['video2'] = new YT.Player('video2');
+        players['video3'] = new YT.Player('video3');
+    }
+
+    function playVideo(videoId) {
+        if (players[videoId]) {
+            players[videoId].playVideo();
+        }
+    }
+
+    function pauseVideo(videoId) {
+        if (players[videoId]) {
+            players[videoId].pauseVideo();
+        }
+    }
+
+    function rewindVideo(videoId) {
+        if (players[videoId]) {
+            let currentTime = players[videoId].getCurrentTime();
+            players[videoId].seekTo(currentTime - 10, true);
+        }
+    }
+
+    function forwardVideo(videoId) {
+        if (players[videoId]) {
+            let currentTime = players[videoId].getCurrentTime();
+            players[videoId].seekTo(currentTime + 10, true);
+        }
+    }
+</script>
+
+</body>
+</html>

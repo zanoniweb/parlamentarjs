@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GALERIA DE FOTOS: GOVERNANÇA DE INOVAÇÃO DE CAMBÉ.</title>
+
+    <style>
+        /* Estilos do primeiro código para padronização */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        /* Novo Estilo do cabeçalho, idêntico ao primeiro código */
+        header {
+            background-color: #0077cc;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            /* Estilo da sua imagem de logo, se houver */
+            max-width: 250px; 
+            height: auto;
+            display: block;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 1rem;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        nav a:hover {
+            color: #ffdd57;
+        }
+
+        /* Novo Estilo do rodapé, idêntico ao primeiro código */
+        footer {
+            background-color: #0077cc;
+            color: white;
+            text-align: center;
+            padding: 0.5rem;
+            margin-top: 1rem;
+            font-size: 0.8rem;
+        }
+        
+        /* Estilos específicos para a página da Galeria */
+        body { 
+            color: black;
+            background-color: white;
+            font-family: 'Geneva', sans-serif;
+            font-size: 25px;
+            text-align: center;
+        }
+
+        h1, h2, h3, h4, h5, h6, h7, h8, h9 {
+            font-family: 'Geneva', sans-serif;
+            font-size: 45px;
+            text-align: center;
+        }
+        
+        p {
+            font-family: 'Geneva', sans-serif;
+            font-size: 25px;
+            text-align: justify;
+        }
+        
+        button {
+            color: white;
+            background-color: blueviolet;
+            font-family: 'Geneva', sans-serif;
+            font-size: 25px;
+            text-decoration: none;
+        }
+
+        /* Início do código de estilização da galeria */
+        .gallery { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 15px; 
+            padding: 20px; 
+            max-width: 1000px; 
+            margin: auto; 
+        }
+        .gallery-item { 
+            background: white; 
+            padding: 10px; 
+            border-radius: 8px; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+            text-align: center; 
+        }
+        .gallery-item img { 
+            width: 100%; 
+            border-radius: 8px; 
+            cursor: pointer; 
+        }
+        .title { 
+            font-weight: bold; 
+            font-size: 18px; 
+            margin: 10px 0; 
+        }
+        .read-more { 
+            background-color: blueviolet; 
+            color: white; 
+            border: none; 
+            padding: 6px 12px; 
+            cursor: pointer; 
+            border-radius: 5px; 
+            font-size: 14px; 
+        }
+        .article { 
+            display: none; 
+            text-align: justify; 
+            max-width: 800px; 
+            margin: auto; 
+        }
+        .article img { 
+            width: 100%; 
+            border-radius: 8px; 
+        }
+        .back-button { 
+            color: white; 
+            background-color: blueviolet; 
+            font-family: 'Geneva', sans-serif; 
+            font-size: 25px; 
+            text-decoration: none; 
+        }
+        @media (max-width: 800px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 500px) { .gallery { grid-template-columns: repeat(1, 1fr); } }
+    </style>
+
+</head>
+
+<body>
+
+<header>
+    
+    <a class="logo">NOME CANDIDATO (A)</a>
+    
+    <nav>
+
+        <a href="agenda.html">Agenda Política |</a>
+        <a href="contatos.html">Contatos |</a>
+        <a href="consulta.html">Chat |</a> 
+        <a href="mensagem.html">Mensagens |</a>
+        <a href="index.html">Sobre Mim |</a>
+        <a href="videos.html">Vídeos |</a>
+
+    </nav>
+</header>
+
+
+<main>
+    <h1>GALERIA DE FOTOS</h1>
+
+    <div class="gallery" id="gallery"></div>
+    <div id="article-view" class="article"></div>
+</main>
+
+<footer>
+    
+    <p>Site desenvolvido por J. Z.</p>
+
+</footer>
+
+<script>
+const photos = [
+    { src: " ", title: " ", description: " " },
+    { src: " ", title: " ", description: " " },
+    { src: " ", title: " ", description: " " },
+    { src: " ", title: " ", description: " " },
+    { src: " ", title: " ", description: " " },
+    { src: " ", title: " ", description: " " },
+    { src: " ", title: " ", description: " " },
+    { src: " ", title: " ", description: " " },
+    { src: " ", title: " ", description: " " },
+    { src: " ", title: " ", description: " " },
+    { src: " ", title: " ", description: " " },
+    { src: " ", title: " ", description: " " },
+    { src: " ", title: " ", description: " " },
+]
+
+function loadGallery() {
+    const gallery = document.getElementById("gallery");
+    gallery.innerHTML = "";
+    photos.forEach((photo, index) => {
+        const item = document.createElement("div");
+        item.classList.add("gallery-item");
+        item.innerHTML = `
+            <img src="${photo.src}" alt="${photo.title}" onclick="showArticle(${index})">
+            <div class="title">${photo.title}</div>
+            <button class="read-more" onclick="showArticle(${index})">Ler mais</button>
+        `;
+        gallery.appendChild(item);
+    });
+}
+
+function showArticle(index) {
+    const photo = photos[index];
+    document.getElementById("gallery").style.display = "none";
+    document.getElementById("article-view").style.display = "block";
+    document.getElementById("article-view").innerHTML = `
+        <center>
+        <img src="${photo.src}" alt="${photo.title}">
+        </center>
+        <h2>${photo.title}</h2>
+        <p>${photo.description}</p>
+        <center>
+        <button class="back-button" onclick="closeArticle()">Voltar</button>
+        </center>
+    `;
+}
+
+function closeArticle() {
+    document.getElementById("article-view").style.display = "none";
+    document.getElementById("gallery").style.display = "grid";
+}
+
+loadGallery();
+</script>
+
+</body>
+</html>
