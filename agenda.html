@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AGENDA DE EVENTOS ANUAIS: CANDIDATA.</title>
-
+    
     <style>
         /* Reset e base */
         * {
@@ -17,31 +17,44 @@
             font-size: 16px;
             scroll-behavior: smooth;
         }
-        
+
+        body {
+            color: #333;
+            background-color: #f4f4f4;
+            font-family: 'Times New Roman', serif;
+            font-size: 1rem;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
         /* Estilo do cabeçalho */
         header {
-            background-color: #0077cc; /* Cor de fundo do cabeçalho do primeiro código */
+            background-color: #0077cc;
             color: white;
             padding: 1rem 2rem;
             display: flex;
-            flex-direction: column; /* Coloca o logo e o menu em coluna para melhor organização */
+            justify-content: space-between; /* Alinha o logo e o botão do menu nas pontas */
             align-items: center;
+            flex-wrap: wrap; /* Permite que os itens quebrem a linha */
         }
-
+        
         .logo { 
             max-width: 250px;
             height: auto;
-            margin-bottom: 1rem; /* Espaçamento entre o logo e o menu */
+            color: white;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            font-size: 1.5rem;
         }
         
-        /* Novo estilo para o menu de navegação */
+        /* Menu de navegação */
         nav {
             display: flex;
             justify-content: center;
-            flex-wrap: nowrap;
-            gap: 1rem;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
+            align-items: center;
+            gap: 1.5rem; /* Aumenta o espaçamento entre os links */
         }
 
         nav a {
@@ -58,21 +71,25 @@
             color: #ffdd57;
         }
 
-        /* Removido o estilo do ul e a.separator, pois não serão mais utilizados */
-        /* ul { ... } */
-        /* .separator { ... } */
-
-        /* Estilos do conteúdo principal */
-        body {
-            color: #333;
-            background-color: #f4f4f4;
-            font-family: 'Times New Roman', serif;
-            font-size: 1rem;
-            margin: 0;
-            padding: 0;
-            text-align: center;
+        /* Botão do menu (hambúrguer) para mobile */
+        .menu-toggle {
+            display: none; /* Esconde o botão por padrão */
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
         }
 
+        .menu-toggle .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px 0;
+            transition: 0.4s;
+        }
+
+        /* Títulos e parágrafos */
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Times New Roman', serif;
             font-size: 2.2rem;
@@ -94,7 +111,7 @@
             text-align: center;
             padding: 1rem;
             margin-top: 2rem;
-            font-size: 0.8rem; /* Fonte menor e sutil como no primeiro código */
+            font-size: 0.8rem;
         }
 
         button {
@@ -134,26 +151,44 @@
             background: white;
             padding: 15px;
             margin: 10px auto;
-            width: 80%; /* Ajuste para ter mais espaço */
+            width: 80%;
             max-width: 600px;
             border-radius: 8px;
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        /* Responsividade para o cabeçalho */
+        /* Responsividade */
         @media (max-width: 768px) {
             header {
-                padding: 1rem;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
             }
+
             .logo {
-                max-width: 200px;
+                margin: 0;
             }
+
+            .menu-toggle {
+                display: block; /* Mostra o botão hambúrguer */
+            }
+
             nav {
-                justify-content: flex-start;
-                padding-bottom: 0.5rem;
+                display: none; /* Esconde o menu por padrão em telas pequenas */
+                flex-direction: column;
+                width: 100%;
+                background-color: #0066b2; /* Cor de fundo para o menu expandido */
+                padding: 1rem 0;
             }
+
+            nav.active {
+                display: flex; /* Mostra o menu quando a classe .active é adicionada */
+            }
+
             nav a {
-                font-size: 1rem;
+                padding: 0.75rem 0;
+                width: 100%;
+                text-align: center;
             }
         }
     </style>
@@ -162,54 +197,62 @@
 <body>
 
 <header>
-     <a class="logo">NOME CANDIDATO (A)</a>
-    
-     <nav>
-       
-        <a href="contatos.html">Contatos |</a>
-        <a href="consulta.html">Chat |</a> 
-        <a href="eventos.html">Fotos |</a>
-        <a href="mensagem.html">Mensagens |</a>
-        <a href="index.html">Sobre Mim |</a>
-        <a href="videos.html">Vídeos |</a>
-        
+    <a class="logo">NOME CANDIDATO (A)</a>
+    <button class="menu-toggle" aria-label="Abrir menu de navegação">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+    <nav id="main-nav">
+        <a href="contatos.html">Contatos</a>
+        <a href="consulta.html">Chat</a>
+        <a href="eventos.html">Fotos</a>
+        <a href="mensagem.html">Mensagens</a>
+        <a href="index.html">Sobre Mim</a>
+        <a href="videos.html">Vídeos</a>
     </nav>
-
 </header>
-
 
 <h1>AGENDA DE EVENTOS ANUAIS: 2025.</h1>
     
-    <br>
+<br>
     
-    <label for="mes">Selecione um mês:</label>
-    <select id="mes" onchange="mostrarEventos()">
-        <option value="" selected>Selecionar</option>
-        <option value="janeiro">Janeiro</option>
-        <option value="fevereiro">Fevereiro</option>
-        <option value="marco">Março</option>
-        <option value="abril">Abril</option>
-        <option value="maio">Maio</option>
-        <option value="junho">Junho</option>
-        <option value="julho">Julho</option>
-        <option value="agosto">Agosto</option>
-        <option value="setembro">Setembro</option>
-        <option value="outubro">Outubro</option>
-        <option value="novembro">Novembro</option>
-        <option value="dezembro">Dezembro</option>
-    </select>
+<label for="mes">Selecione um mês:</label>
+<select id="mes" onchange="mostrarEventos()">
+    <option value="" selected>Selecionar</option>
+    <option value="janeiro">Janeiro</option>
+    <option value="fevereiro">Fevereiro</option>
+    <option value="marco">Março</option>
+    <option value="abril">Abril</option>
+    <option value="maio">Maio</option>
+    <option value="junho">Junho</option>
+    <option value="julho">Julho</option>
+    <option value="agosto">Agosto</option>
+    <option value="setembro">Setembro</option>
+    <option value="outubro">Outubro</option>
+    <option value="novembro">Novembro</option>
+    <option value="dezembro">Dezembro</option>
+</select>
 
-    <div id="eventos"></div>
+<div id="eventos"></div>
 
+<br>
+
+<footer>
+    Site em desenvolvimento por J. Z.
+</footer>
     
-    <br>
-
-    <footer>
-        Site em desenvolvimento por J. Z.
-    </footer>
-    
-
 <script>
+    // Script para o menu responsivo
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navMenu = document.getElementById('main-nav');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    });
+
     const eventosPorMes = {
         janeiro: [
             { data: "10/01", titulo: "Workshop I das 14:00 até às 18:00 horas" },

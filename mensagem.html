@@ -5,208 +5,259 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CONTATO - CANDIDATA</title>
     
-<style>
+    <style>
+        /* Reset e base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* Reset e base */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
 
-html {
-  font-size: 16px;
-  scroll-behavior: smooth;
-}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            padding: 0;
+        }
 
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
-  line-height: 1.6;
-  padding: 0;
-}
+        /* Cabeçalho */
+        header {
+            background-color: #0077cc;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between; /* Alinha o logo e o botão do menu nas pontas */
+            align-items: center;
+            flex-wrap: wrap;
+        }
 
-/* Cabeçalho */
-header {
-  background-color: #0077cc;
-  color: white;
-  padding: 1rem 2rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-}
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
 
-.logo {
-  font-size: 1.8rem;
-  font-weight: bold;
-  text-decoration: none;
-  color: white;
-}
+        /* Novo Estilo do menu de navegação */
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem; /* Aumenta o espaçamento entre os links */
+        }
 
-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
 
-nav a {
-  text-decoration: none;
-  color: white;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
+        nav a:hover {
+            color: #ffdd57;
+        }
 
-nav a:hover {
-  color: #ffdd57;
-}
+        /* Botão do menu (hambúrguer) para mobile */
+        .menu-toggle {
+            display: none; /* Esconde o botão por padrão */
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
 
-/* Conteúdo principal */
-main {
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-}
+        .menu-toggle .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px 0;
+            transition: 0.4s;
+        }
 
-h1 {
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
-  margin-bottom: 1.5rem;
-  text-align: center;
-  color: #0077cc;
-}
+        /* Conteúdo principal */
+        main {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
 
-/* Formulário */
-.form-container {
-  background-color: white;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
+        h1 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: #0077cc;
+        }
 
-form {
-  display: grid;
-  gap: 1rem;
-}
+        /* Formulário */
+        .form-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
 
-input,
-textarea,
-button {
-  padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 1rem;
-  width: 100%;
-}
+        form {
+            display: grid;
+            gap: 1rem;
+        }
 
-textarea {
-  resize: vertical;
-  min-height: 120px;
-}
+        input,
+        textarea,
+        button {
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+            width: 100%;
+        }
 
-button {
-  background-color: #0077cc;
-  color: white;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
 
-button:hover {
-  background-color: #005fa3;
-}
+        button {
+            background-color: #0077cc;
+            color: white;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
 
-/* Responsividade */
-@media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+        button:hover {
+            background-color: #005fa3;
+        }
 
-  nav {
-    margin-top: 1rem;
-    flex-direction: column;
-    width: 100%;
-  }
+        /* Rodapé */
+        footer {
+            background-color: #0077cc;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+        }
 
-  nav a {
-    margin: 0.5rem 0;
-  }
+        /* Responsividade para o cabeçalho e rodapé */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
 
-  .form-container {
-    padding: 1.5rem;
-  }
-}
+            .logo {
+                margin: 0;
+            }
 
-@media (max-width: 480px) {
-  body {
-    font-size: 15px;
-  }
+            .menu-toggle {
+                display: block; /* Mostra o botão hambúrguer */
+            }
 
-  .logo {
-    font-size: 1.5rem;
-  }
+            nav {
+                display: none; /* Esconde o menu por padrão em telas pequenas */
+                flex-direction: column;
+                width: 100%;
+                background-color: #0066b2; /* Cor de fundo para o menu expandido */
+                padding: 1rem 0;
+            }
 
-  h1 {
-    font-size: 1.8rem;
-  }
+            nav.active {
+                display: flex; /* Mostra o menu quando a classe .active é adicionada */
+            }
 
-  .form-container {
-    padding: 1rem;
-  }
-}
+            nav a {
+                padding: 0.75rem 0;
+                width: 100%;
+                text-align: center;
+            }
+        }
 
+        @media (max-width: 480px) {
+            body {
+                font-size: 15px;
+            }
 
-</style>
+            .logo {
+                font-size: 1.5rem;
+            }
 
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .form-container {
+                padding: 1rem;
+            }
+        }
+    </style>
 </head>
+
 <body>
-
     <header>
-
-         <a class="logo">NOME CANDIDATO (A)</a>
-         
-        <nav>
-            
-            <a href="agenda.html">Agenda Política |</a>
-            <a href="contatos.html">Contatos |</a>
-            <a href="consulta.html">Chat |</a> 
-            <a href="eventos.html">Fotos |</a>
-            <a href="index.html">Sobre Mim |</a>
-            <a href="videos.html">Vídeos |</a>
-          
+        <a class="logo" href="index.html">NOME CANDIDATO (A)</a>
+        <button class="menu-toggle" aria-label="Abrir menu de navegação">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <nav id="main-nav">
+            <a href="agenda.html">Agenda Política</a>
+            <a href="contatos.html">Contatos</a>
+            <a href="consulta.html">Chat</a> 
+            <a href="eventos.html">Fotos</a>
+            <a href="index.html">Sobre Mim</a>
+            <a href="videos.html">Vídeos</a>
         </nav>
     </header>
 
     <main>
         <h1>Fale Conosco</h1>
-        <div class="form-container">
-            <form action="#" method="post">
-                <div class="form-group">
-                    <label for="nome">Nome Completo:</label>
-                    <input type="text" id="nome" name="nome" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">E-mail:</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="assunto">Assunto:</label>
-                    <input type="text" id="assunto" name="assunto" required>
-                </div>
-                <div class="form-group">
-                    <label for="mensagem">Mensagem:</label>
-                    <textarea id="mensagem" name="mensagem" rows="6" required></textarea>
-                </div>
-                <button type="submit" class="btn-enviar">Enviar Mensagem</button>
-            </form>
+       <div class="form-container">
+    <form action="#" method="post" autocomplete="off">
+        <div class="form-group">
+            <label for="nome">Nome Completo:</label>
+            <input type="text" id="nome" name="nome" required>
         </div>
+        <div class="form-group">
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="assunto">Assunto:</label>
+            <input type="text" id="assunto" name="assunto" required>
+        </div>
+        <div class="form-group">
+            <label for="mensagem">Mensagem:</label>
+            <textarea id="mensagem" name="mensagem" rows="6" required></textarea>
+        </div>
+        <button type="submit" class="btn-enviar">Enviar Mensagem</button>
+    </form>
+</div>
     </main>
 
     <footer>
-        <p>&copy; 2025 Sua Loja Online</p>
+        Site desenvolvido por J. Z.
     </footer>
+
+    <script>
+        // Script para o menu responsivo
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navMenu = document.getElementById('main-nav');
+
+            menuToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+        });
+    </script>
 
 </body>
 </html>

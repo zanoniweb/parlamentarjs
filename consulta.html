@@ -18,15 +18,20 @@
             scroll-behavior: smooth;
         }
 
+        body { 
+            font-family: Arial, sans-serif; 
+            background-color: #f0f8ff; 
+        }
+
         /* Novo Estilo do cabeçalho, idêntico ao primeiro código */
         header {
             background-color: #0077cc;
             color: white;
             padding: 1rem 2rem;
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
+            justify-content: space-between; /* Alinha o logo e o botão do menu nas pontas */
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .logo {
@@ -34,15 +39,14 @@
             font-weight: bold;
             text-decoration: none;
             color: white;
-            /* Estilo específico para a logo, se houver imagem */
         }
 
+        /* Novo Estilo do menu de navegação */
         nav {
             display: flex;
-            flex-wrap: nowrap;
-            gap: 1rem;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem; /* Aumenta o espaçamento entre os links */
         }
 
         nav a {
@@ -56,6 +60,25 @@
         nav a:hover {
             color: #ffdd57;
         }
+        
+        /* Botão do menu (hambúrguer) para mobile */
+        .menu-toggle {
+            display: none; /* Esconde o botão por padrão */
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .menu-toggle .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px 0;
+            transition: 0.4s;
+        }
+
 
         /* Novo Estilo do rodapé, idêntico ao primeiro código */
         footer {
@@ -66,20 +89,8 @@
             margin-top: 1rem;
             font-size: 0.8rem;
         }
-
-        /* Responsividade para o cabeçalho e rodapé */
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
         
         /* Estilos específicos para a página do Chat */
-        body { 
-            font-family: Arial, sans-serif; 
-            background-color: #f0f8ff; 
-        }
         .chat-container { 
             max-width: 600px;
             width: 90%;
@@ -151,22 +162,60 @@
         .manual.ativo {
             right: 0;
         }
+
+        /* Responsividade para o cabeçalho e rodapé */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .logo {
+                margin: 0;
+            }
+
+            .menu-toggle {
+                display: block; /* Mostra o botão hambúrguer */
+            }
+
+            nav {
+                display: none; /* Esconde o menu por padrão em telas pequenas */
+                flex-direction: column;
+                width: 100%;
+                background-color: #0066b2; /* Cor de fundo para o menu expandido */
+                padding: 1rem 0;
+            }
+
+            nav.active {
+                display: flex; /* Mostra o menu quando a classe .active é adicionada */
+            }
+
+            nav a {
+                padding: 0.75rem 0;
+                width: 100%;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 
 <body>
 
 <header>
-    <a class="logo">NOME CANDIDATO (A)</a>
-    <nav>
-
-        <a href="agenda.html">Agenda Política |</a>
-        <a href="contatos.html">Contatos |</a>
-        <a href="eventos.html">Fotos |</a>
-        <a href="mensagem.html">Mensagens |</a>
-        <a href="index.html">Sobre Mim |</a>
-        <a href="videos.html">Vídeos |</a>
-
+    <a href="index.html" class="logo">NOME CANDIDATO (A)</a>
+    <button class="menu-toggle" aria-label="Abrir menu de navegação">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+    <nav id="main-nav">
+        <a href="agenda.html">Agenda Política</a>
+        <a href="contatos.html">Contatos</a>
+        <a href="eventos.html">Fotos</a>
+        <a href="mensagem.html">Mensagens</a>
+        <a href="index.html">Sobre Mim</a>
+        <a href="videos.html">Vídeos</a>
     </nav>
 </header>
 
@@ -194,12 +243,20 @@
 </main>
 
 <footer>
-
     <p>Site desenvolvido por J. Z.</p>
-
 </footer>
 
 <script>
+    // Script para o menu responsivo
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navMenu = document.getElementById('main-nav');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    });
+
     function addMessage(text, isBot = false) {
         const messageElement = document.createElement('div');
         messageElement.classList.add('message', isBot ? 'bot-message' : 'user-message');
